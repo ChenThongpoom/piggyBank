@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>selectBanknotes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
+   
+</head>
+<style>
+    .btn-lg2:hover{background-color:white;border-color:white;color:black}
+    .btn-lg2{background-color:black;border-color:black;font-weight:bold;border-width:2px 5px;color:white}
+    .btn1:hover{background-color:#b22222;border-color:#b22222}
+    .btn1{display:inline-block;font-weight:400;text-align:center;white-space:nowrap;vertical-align:middle;
+        -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;
+        font-size:1rem;line-height:1.5;border-radius:.25rem;
+        transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}
+    .page-header1{padding-bottom:9px;}
+    .modal-header1{padding:15px;border-bottom:1px solid #e5e5e5}.modal-header1.close{margin-top:-2px}
+    /* .btn{display:inline-block;font-weight:400;text-align:center;white-space:nowrap;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;transition:color .15s ease-in-out, */
+                     /* background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out} */
+    /* .btn-lg{padding:.5rem 1rem;font-size:1.25rem;line-height:1.5;border-radius:.3rem} */
+</style>
+<body style="background-color:grey">
+
+<script>
+	function sendBankNote(index){
+		var xhttp = new XMLHttpRequest();
+		
+
+		xhttp.onreadystatechange = function() {
+		    	if (this.readyState == 4 && this.status == 200) {
+	       			console.log(http.responseText)
+				document.getElementById("p1").innerHTML = "Quantity = " + http.responseText;
+				if (index == 2){
+					document.getElementById("p2").innerHTML = "Total = "+http.responseText * 20;
+				}
+				if (index == 5){
+					document.getElementById("p2").innerHTML = "Total = "+http.responseText* 50;
+				}
+				if (index == 9){
+					document.getElementById("p2").innerHTML = "Total = "+http.responseText* 100;
+				}
+				if (index == 7){
+					document.getElementById("p2").innerHTML = "Total = "+http.responseText*500;
+				}
+				if (index == 8){
+					document.getElementById("p2").innerHTML = "Total = "+http.responseText*1000;
+				}
+		    	}
+		};
+		xhttp.open("POST", "http://127.0.0.1:5000/bankDeposit", true);
+		xhttp.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+		xhttp.send("amount=" + (index).toString());
+	}
+</script>
+
+<div class="container" >
+
+<div class="page-header1">
+    <h1 style="text-align:center;font-weight:bold;margin-right:70px;">Deposit</h1>
+</div>
+<div class="sub-header">
+    <h2 style="font-size:25px;text-align:center;font-weight:bold;margin-right:70px; margin-top:25px;">Select Banknotes to Deposit</h2>
+</div>
+
+
+<!-- Loading Button Effects - START -->
+    <div class="row">
+        <div class="col">
+            <button class="btn btn-lg btn-lg2" data-toggle="modal" data-target="#myModal" style="margin-top:45px; width:150px; height:150px;font-size:30px;" onclick="sendBankNote(2)">20</button>
+	    <div class="modal fade" id="myModal" role="dialog">
+            	<div class="modal-dialog">
+                    
+                <!-- Modal content-->
+                	<div class="modal-content">
+                     	<div class="modal-header1"> 
+                        	<button type="button" class="close" data-dismiss="modal">&times;</button>   
+                                <h4 class="modal-title">AMOUNT</h4>
+                        </div>
+                            <div class="modal-body">
+                                <p id="p1" >Quantity = ..</p> <p id="p2">Total = ..</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+				<button type="button" class="btn btn-default" onclick="sendBankNote(2)">REFRESH</button>
+                            </div>       
+                        </div>
+                        
+                </div>
+           </div>
+        </div>
+        <div class="col">
+            <button class="btn btn-lg btn-lg2" data-toggle="modal" data-target="#myModal" style="margin-top:45px; width:150px; height:150px;font-size:30px;" onclick="sendBankNote(5)">50</button>
+	    <div class="modal fade" id="myModal" role="dialog">
+            	<div class="modal-dialog">
+                    
+                <!-- Modal content-->
+                	<div class="modal-content">
+                     	<div class="modal-header1"> 
+                        	<button type="button" class="close" data-dismiss="modal">&times;</button>   
+                                <h4 class="modal-title">AMOUNT</h4>
+                        </div>
+                            <div class="modal-body">
+                                <p id="p1">Quantity = ..</p> <p id = "p2">Total = ..</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+				<button type="button" class="btn btn-default" onclick="sendBankNote(5)">REFRESH</button>
+                            </div>       
+                        </div>
+                        
+                </div>
+           </div>
+        </div>
+        <div class="col">
+            <button class="btn btn-lg btn-lg2" data-toggle="modal" data-target="#myModal" style="margin-top:45px; width:150px; height:150px;font-size:30px;" onclick="sendBankNote(9)">100</button>
+	    <div class="modal fade" id="myModal" role="dialog">
+            	<div class="modal-dialog">
+                    
+                <!-- Modal content-->
+                	<div class="modal-content">
+                     	<div class="modal-header1"> 
+                        	<button type="button" class="close" data-dismiss="modal">&times;</button>   
+                                <h4 class="modal-title">AMOUNT</h4>
+                        </div>
+                            <div class="modal-body">
+                                <p id="p1">Quantity = ..</p> <p id = "p2">Total = ..</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+				<button type="button" class="btn btn-default" onclick="sendBankNote(9)">REFRESH</button>
+                            </div>       
+                        </div>
+                        
+                </div>
+           </div>
+        </div>
+        <div class="col">
+            <button class="btn btn-lg btn-lg2" data-toggle="modal" data-target="#myModal" style="margin-top:45px; width:150px; height:150px;font-size:30px;" onclick="sendBankNote(7)">500</button>
+	    <div class="modal fade" id="myModal" role="dialog">
+            	<div class="modal-dialog">
+                    
+                <!-- Modal content-->
+                	<div class="modal-content">
+                     	<div class="modal-header1"> 
+                        	<button type="button" class="close" data-dismiss="modal">&times;</button>   
+                                <h4 class="modal-title">AMOUNT</h4>
+                        </div>
+                            <div class="modal-body">
+                                <p id="p1" >Quantity = ..</p> <p id="p2" >Total = ..</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+				<button type="button" class="btn btn-default" onclick="sendBankNote(7)">REFRESH</button>
+                            </div>       
+                        </div>
+                        
+                </div>
+           </div>
+        </div> 
+        <div class="col">
+            <button class="btn btn-lg btn-lg2" data-toggle="modal" data-target="#myModal" style="margin-top:45px; width:150px; height:150px;font-size:30px;" onclick="sendBankNote(8)">1000</button>
+	    <div class="modal fade" id="myModal" role="dialog">
+            	<div class="modal-dialog">
+                    
+                <!-- Modal content-->
+                	<div class="modal-content">
+                     	<div class="modal-header1"> 
+                        	<button type="button" class="close" data-dismiss="modal">&times;</button>   
+                                <h4 class="modal-title">AMOUNT</h4>
+                        </div>
+                            <div class="modal-body">
+                                <p id="p1">Quantity = ..</p> <p id="p2">Total = ..</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
+				<button type="button" class="btn btn-default" onclick="sendBankNote(8)">REFRESH</button>
+                            </div>       
+                        </div>
+                        
+                </div>  
+           </div>
+        </div> 
+    </div>
+    <div class="row">
+        <div class="col">
+            <a href="piggyBank.html">
+                <button type="button" class="btn btn-lg btn-lg2" style="margin-top:45px; width:250px; height:100px;font-size:30px;">HOME</button>
+            </a>
+        </div>
+        <div class="col">
+            <a href="Deposit.html">
+                <button type="button" class="btn btn-lg btn-lg2" style="margin-top:45px; width:250px; height:100px; font-size:30px;">BACK</button>
+            </a>
+        </div>
+	<div class="col">
+		<buttun type="button" class="btn btn-lg btn-lg2" style="margin-top:45px; width:250px; height:100px; font-size:30px;" onclick="sendBankNote(0)">RESET</button>
+    	</div>
+</div>
+</body>
+</html>

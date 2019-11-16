@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>LOCKSCREEN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+
+</head>
+<style>
+    .btn-lg2:hover{background-color:#b22222;border-color:#b22222}
+    .btn-lg2{background-color:black;border-color:black;font-weight:bold;}
+    .btn1:hover{background-color:#b22222;border-color:#b22222}
+    .btn1{display:inline-block;font-weight:400;text-align:center;white-space:nowrap;vertical-align:middle;
+        -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;
+        font-size:1rem;line-height:1.5;border-radius:.25rem;
+        transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}
+    /* .btn{display:inline-block;font-weight:400;text-align:center;white-space:nowrap;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;transition:color .15s ease-in-out, */
+                     /* background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out} */
+    /* .btn-lg{padding:.5rem 1rem;font-size:1.25rem;line-height:1.5;border-radius:.3rem} */
+</style>
+
+
+
+<body style="background-color:grey">
+
+
+<div class="container" >
+
+<div class="page-header">
+    <h1 style="text-align:center;font-weight:bold;margin-right:70px;">PiggyBankATM</h1>
+</div>
+
+<div class="text-center">
+  <img src="BASICAPP_1-39-512.png" class="rounded" alt="Lock" width="150" height="150" style="margin-top:175px;margin-right:50px">
+</div>
+
+<div class="sub-header">
+<h2 style="text-align:center;font-weight:bold;margin-top:200px;margin-right:70px">Scan your finger to Unlock</h2>
+
+<!-- <div class="text-center">
+  <img src="Desktop/piggyBank/BASICAPP_1-39-512.png" class="rounded" alt="Lock">
+</div> -->
+</body>
+<script> 
+function httpGet(theUrl)
+	{
+	    var xmlHttp = new XMLHttpRequest();
+	    xmlHttp.open( "GET", theUrl, true ); // false for synchronous request
+	    xmlHttp.send( null );
+	    xmlHttp.onreadystatechange = function(){
+	    if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+		    console.log( xmlHttp.responseText);
+		    if (xmlHttp.responseText == 'Go to homescreen'){
+			window.location = 'piggyBank.html'
+		    }
+		    else if (xmlHttp.responseText == 'no match found!'){
+			window.location = 'LockScreen.html'
+		    }
+            }	
+	}
+	    /*console.log( xmlHttp.responseText);
+	    if (xmlHttp.responseText == 'Go to homescreen'){
+		window.location = 'piggyBank.html'
+		}
+	    else if (xmlHttp.responseText == 'no match found!'){
+		window.location = 'LockScreen.html'
+		}*/
+}
+httpGet('http://127.0.0.1:5000')
+</script>
+
+
+</html>
+

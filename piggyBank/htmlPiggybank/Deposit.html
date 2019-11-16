@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>DEPOSIT</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <link rel="stylesheet" type="text/css" href="font-awesome/css/font-awesome.min.css" />
+
+    <script type="text/javascript" src="js/jquery-1.10.2.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> 
+   
+</head>
+<style>
+    .btn-lg2:hover{background-color:white;border-color:white;color:black}
+    .btn-lg2{background-color:black;border-color:black;font-weight:bold;color:white}
+    .btn1:hover{background-color:#b22222;border-color:#b22222}
+    .btn1{display:inline-block;font-weight:400;text-align:center;white-space:nowrap;vertical-align:middle;
+        -webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;
+        font-size:1rem;line-height:1.5;border-radius:.25rem;
+        transition:color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out}
+    .page-header1{padding-bottom:9px;}
+    .modal-header1{padding:15px;border-bottom:1px solid #e5e5e5}.modal-header1.close{margin-top:-2px}
+    /* .btn{display:inline-block;font-weight:400;text-align:center;white-space:nowrap;vertical-align:middle;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;border:1px solid transparent;padding:.375rem .75rem;font-size:1rem;line-height:1.5;border-radius:.25rem;transition:color .15s ease-in-out, */
+                     /* background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out} */
+    /* .btn-lg{padding:.5rem 1rem;font-size:1.25rem;line-height:1.5;border-radius:.3rem} */
+</style>
+<body style="background-color:grey">
+
+<div class="container" >
+
+<div class="page-header1">
+    <h1 style="text-align:center;font-weight:bold;margin-right:70px;">DEPOSIT</h1>
+</div>
+<div class="sub-header">
+    <h2 style="font-size:25px;text-align:center;font-weight:bold;margin-right:70px; margin-top:25px;">Select types</h2>
+</div>
+
+
+<!-- Loading Button Effects - START -->
+    <div class="row">
+        <div class="image-block col">
+            <!-- <a href="coinDeposit.html" > -->
+                <button type="button" class="btn btn-lg btn-lg2" data-toggle="modal" data-target="#myModal"  style="margin-top:45px; width:470px; height:250px;font-size:30px;">COIN</button>
+	    	<div class="modal fade" id="myModal" role="dialog">
+            		<div class="modal-dialog">
+                    
+                	<!-- Modal content-->
+                		<div class="modal-content">
+                     		<div class="modal-header1"> 
+                        		<button type="button" class="close" data-dismiss="modal">&times;</button>   
+                                	<h4 class="modal-title">AMOUNT</h4>
+                        	</div>
+                            	<div class="modal-body">
+                                	<p id="p1">1 Baht coin = ...</p> <p id="p2">2 Baht coin = ...</p> <p id="p3">5 Baht coin = ...</p> <p id="p4">10 Baht coin = ...</p> <p id="p5">Total = ...</p>
+                            	</div>
+                            	<div class="modal-footer">
+                                	<button type="button" class="btn btn-default" onclick="httpGet('http://127.0.0.1:5000/stopDep')">REFRESH</button>
+					<button type="button" class="btn btn-default" onclick="httpGet('http://127.0.0.1:5000/coinDeposit')">RESET</button>
+                            	</div>       
+                        	</div>
+                        
+                	</div>
+           	</div>            	
+	    <!-- </a> -->
+        </div>
+        <div class="image-block col">
+            <a href="selectBankDeposit.html">
+                <button typr="button" class="btn btn-lg btn-lg2" style="margin-top:45px; width:470px; height:250px;font-size:30px;">BANKNOTES</button>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="image-block col">
+            <a href="piggyBank.html" >
+                <button type="button" class="btn btn-lg btn-lg2" style="margin-top:45px; width:250px; height:100px;font-size:30px;">HOME</button>
+            </a>
+        </div>
+    </div>
+</body>
+<script>
+
+function httpGet(theUrl)
+	{
+	    var http = new XMLHttpRequest();
+	    http.open( "GET", theUrl, true ); // false for synchronous request
+	    http.send( null );
+	    http.onreadystatechange = function(){
+	    if (http.readyState == 4 && http.status == 200) {
+		    console.log( http.responseText);
+		    var result = JSON.parse(this.responseText).split(",")
+			document.getElementById("p1").innerHTML = "1 Baht coin = "+result[0]+" Baht";
+			document.getElementById("p2").innerHTML = "2 Baht coin = "+result[1]+" Baht";
+			document.getElementById("p3").innerHTML = "5 Baht coin = "+result[2]+" Baht";
+			document.getElementById("p4").innerHTML = "10 Baht coin = "+result[3]+" Baht";
+			var result2 = parseInt(result[0])+parseInt(result[1])+parseInt(result[2])+parseInt(result[3]);
+			document.getElementById("p5").innerHTML = "Total = "+result2+" Baht";
+			
+			console.log(parseInt(result[3]))
+		    
+	   	}	
+	}
+
+}
+
+</script>
+</html>
